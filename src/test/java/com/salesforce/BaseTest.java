@@ -22,7 +22,6 @@ public class BaseTest {
     public void setUp(ITestContext testContext) {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-//            options.addArguments("--headless=new");
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);

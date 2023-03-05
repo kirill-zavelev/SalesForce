@@ -1,6 +1,5 @@
 package com.salesforce.model;
 
-import com.salesforce.wrapper.AccountFormInput;
 import com.salesforce.wrapper.ContactFormInput;
 import org.openqa.selenium.WebDriver;
 
@@ -82,7 +81,7 @@ public class ContactForm {
 
         public Builder fillAccountName(String accountName) {
             contactForm.accountName = accountName;
-            new ContactFormInput(driver, "Account Name").fillIn(accountName);
+            new ContactFormInput(driver).fillInAccountName(accountName);
             return this;
         }
 

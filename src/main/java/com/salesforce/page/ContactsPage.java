@@ -5,12 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
 import java.util.Properties;
 
 public class ContactsPage extends BasePage {
 
     private static final String CONTACTS_PAGE_PATH = "/lightning/o/Contact/list?filterName=Recent";
-    private By CONTACTS_TITLE_LOCATOR = By.xpath("//span[text()='Contacts' and @class='slds-var-p-right_x-small']");
+    private static final By CONTACTS_TITLE_LOCATOR = By.xpath("//span[text()='Contacts' "
+            + "and @class='slds-var-p-right_x-small']");
 
     public ContactsPage(WebDriver driver) {
         super(driver);
@@ -34,6 +36,19 @@ public class ContactsPage extends BasePage {
     }
 
     public String getContactCreatedMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-aura-class='forceActionsText']"))).getText();
+        return getMessageAfterActionsWithEntity();
+    }
+
+    public List<String> getContactsNames() {
+        return getAllNames();
+    }
+
+    public ContactsPage deleteContact(String contactName) {
+        deleteEntity(contactName);
+        return this;
+    }
+
+    public String getContactDeletedMessage() {
+        return getMessageAfterActionsWithEntity();
     }
 }

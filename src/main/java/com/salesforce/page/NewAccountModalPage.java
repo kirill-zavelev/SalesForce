@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 
 public class NewAccountModalPage extends BasePage {
 
+    private By SAVE_ACCOUNT = By.xpath("//button[@title='Save']");
+
     public NewAccountModalPage(WebDriver driver) {
         super(driver);
     }
@@ -21,7 +23,7 @@ public class NewAccountModalPage extends BasePage {
     }
 
     public AccountsPage saveAccount() {
-        driver.findElement(By.xpath("//button[@title='Save']")).click();
+        driver.findElement(SAVE_ACCOUNT).click();
         return new AccountsPage(driver);
     }
 }

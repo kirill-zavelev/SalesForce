@@ -1,6 +1,5 @@
 package com.salesforce.page;
 
-import com.salesforce.page.BasePage;
 import com.salesforce.util.PropertiesLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

@@ -3,18 +3,20 @@ package com.salesforce.page;
 import com.salesforce.util.PropertiesLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
+import java.util.Random;
 
 public class AccountsPage extends BasePage {
 
     private static final String ACCOUNTS_PAGE_PATH = "/lightning/o/Account/list?filterName=Recent";
+    private static final String ACCOUNT_PHONE = "//a[text()='%s']"
+            + "//ancestor::tr//span[@class='disabledState']//span[@class='uiOutputPhone']";
 
-    private By ACCOUNTS_TITLE_LOCATOR = By.xpath("//span[text()='Accounts' and @class='slds-var-p-right_x-small']");
+    private final By ACCOUNTS_TITLE_LOCATOR = By.xpath("//span[text()='Accounts' " +
+            "and @class='slds-var-p-right_x-small']");
 
     public AccountsPage(WebDriver driver) {
         super(driver);
@@ -38,27 +40,29 @@ public class AccountsPage extends BasePage {
     }
 
     public String getAccountCreatedMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-aura-class='forceActionsText']"))).getText();
+        return getMessageAfterActionsWithEntity();
     }
 
     public String getAccountDeletedMessage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-aura-class='forceActionsText']"))).getText();
+        return getMessageAfterActionsWithEntity();
     }
 
-    //a[text()='Johnathan Rath']//ancestor::tr//span[@class='disabledState']//span[@class='uiOutputPhone']
-    public List<String> getAccountNames() {
-        List<WebElement> accountNames = driver.findElements(By.xpath("//a[@data-refid='recordId']"));
-        return accountNames.stream().map(WebElement::getText).collect(Collectors.toList());
+    public List<String> getAccountsNames() {
+        return getAllNames();
+    }
+
+    public String getRandomAccountName() {
+        Random random = new Random();
+        List<String> accountNames = getAccountsNames();
+        return accountNames.get(random.nextInt(accountNames.size()));
     }
 
     public String getAccountPhone(String accountName) {
-        return driver.findElement(By.xpath(String.format("//a[text()='%s']//ancestor::tr//span[@class='disabledState']//span[@class='uiOutputPhone']", accountName))).getText();
+        return driver.findElement(By.xpath(String.format(ACCOUNT_PHONE, accountName))).getText();
     }
 
     public AccountsPage deleteAccount(String accountName) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//a[text()='%s']//ancestor::tr//a[@role='button']", accountName)))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='uiMenuItem']//a[@title='Delete']"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Delete']"))).click();
+        deleteEntity(accountName);
         return this;
     }
 }

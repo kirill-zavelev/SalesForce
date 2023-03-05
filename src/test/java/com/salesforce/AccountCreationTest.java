@@ -13,25 +13,25 @@ public class AccountCreationTest extends BaseTest {
     @Test
     public void checkAccountCreation() {
         AccountForm accountForm = new AccountForm();
-        accountForm.setAccountName(new Faker().name().fullName());
+        accountForm.setAccountName(new Faker().name().firstName());
         accountForm.setPhone(new Faker().phoneNumber().cellPhone());
         accountForm.setEmployees(RandomStringUtils.random(2, false, true));
         accountForm.setWebsite(new Faker().internet().domainName());
         final String expectedAccountCreatedMessage = "Account " + "\"" + accountForm.getAccountName() + "\""
                 + " was created.";
         new LoginPage(driver).open()
-                             .login()
-                             .waitForPageOpening();
+                .login()
+                .waitForPageOpening();
         AccountsPage accountsPage = new AccountsPage(driver).open()
-                                .waitForPageOpening()
-                                .createNewAccount()
-                                .fillInAccountInformation(accountForm)
-                                .saveAccount();
+                .waitForPageOpening()
+                .createNewAccount()
+                .fillInAccountInformation(accountForm)
+                .saveAccount();
         Assertions.assertThat(accountsPage.getAccountCreatedMessage())
                 .as("Message should be " + expectedAccountCreatedMessage)
                 .isEqualTo(expectedAccountCreatedMessage);
         accountsPage.open().waitForPageOpening();
-        Assertions.assertThat(accountsPage.getAccountNames())
+        Assertions.assertThat(new AccountsPage(driver).getAccountsNames())
                 .as("List of account names should contain: " + accountForm.getAccountName())
                 .contains(accountForm.getAccountName());
         Assertions.assertThat(accountsPage.getAccountPhone(accountForm.getAccountName()))
@@ -62,7 +62,7 @@ public class AccountCreationTest extends BaseTest {
         Assertions.assertThat(accountsPage.getAccountDeletedMessage())
                 .as("Message should contains of " + expectedAccountDeletedMessage)
                 .contains(expectedAccountDeletedMessage);
-        Assertions.assertThat(accountsPage.getAccountNames())
+        Assertions.assertThat(new AccountsPage(driver).getAccountsNames())
                 .as("List of account names should not contain: " + accountForm.getAccountName())
                 .doesNotContain(accountForm.getAccountName());
     }

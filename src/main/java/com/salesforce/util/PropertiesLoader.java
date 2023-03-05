@@ -10,7 +10,6 @@ public class PropertiesLoader {
         Properties properties = new Properties();
 
         try (InputStream input = PropertiesLoader.class.getClassLoader().getResourceAsStream(fileName)) {
-            //load a properties file from class path, inside static method
             properties.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
