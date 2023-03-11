@@ -18,12 +18,17 @@ public class NewAccountModalPage extends BasePage {
                 .fillWebsite(accountForm.getWebsite())
                 .fillPhone(accountForm.getPhone())
                 .fillEmployees(accountForm.getEmployees())
+                .fillBillingStreet(accountForm.getBillingStreet())
+                .fillShippingStreet(accountForm.getShippingStreet())
+                .fillFax(accountForm.getFax())
+                .selectIndustry(accountForm.getIndustry())
+                .selectType(accountForm.getType())
                 .build();
         return this;
     }
 
-    public AccountsPage saveAccount() {
+    public AccountDetailsPage saveAccount() {
         driver.findElement(SAVE_ACCOUNT).click();
-        return new AccountsPage(driver);
+        return new AccountDetailsPage(driver);
     }
 }
