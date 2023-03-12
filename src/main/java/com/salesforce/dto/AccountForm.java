@@ -1,7 +1,5 @@
-package com.salesforce.model;
+package com.salesforce.dto;
 
-import com.salesforce.util.Industry;
-import com.salesforce.util.Type;
 import com.salesforce.wrapper.Account;
 import org.openqa.selenium.WebDriver;
 
@@ -93,8 +91,8 @@ public class AccountForm {
 
     public static class Builder {
 
-        private AccountForm accountForm;
-        private WebDriver driver;
+        private final AccountForm accountForm;
+        private final WebDriver driver;
 
         public Builder(WebDriver driver) {
             accountForm = new AccountForm();

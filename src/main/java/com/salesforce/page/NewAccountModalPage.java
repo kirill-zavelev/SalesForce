@@ -1,12 +1,12 @@
 package com.salesforce.page;
 
-import com.salesforce.model.AccountForm;
+import com.salesforce.dto.AccountForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NewAccountModalPage extends BasePage {
 
-    private By SAVE_ACCOUNT = By.xpath("//button[@title='Save']");
+    private static final By SAVE_ACCOUNT = By.xpath("//button[@title='Save']");
 
     public NewAccountModalPage(WebDriver driver) {
         super(driver);

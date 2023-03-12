@@ -39,10 +39,6 @@ public class AccountsPage extends BasePage {
         return new NewAccountModalPage(driver);
     }
 
-    public String getAccountCreatedMessage() {
-        return getMessageAfterActionsWithEntity();
-    }
-
     public String getAccountDeletedMessage() {
         return getMessageAfterActionsWithEntity();
     }

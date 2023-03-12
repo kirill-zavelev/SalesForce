@@ -8,6 +8,7 @@ public class FormattedText {
     public static final String TEXT_LOCATOR = "//span[text()='%s']//ancestor::records-record-layout-item//div" +
             "//lightning-formatted-text";
 
+
     private WebDriver driver;
     private String label;
 

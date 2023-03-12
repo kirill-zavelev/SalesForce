@@ -35,10 +35,6 @@ public class ContactsPage extends BasePage {
         return new NewContactModalPage(driver);
     }
 
-    public String getContactCreatedMessage() {
-        return getMessageAfterActionsWithEntity();
-    }
-
     public List<String> getContactsNames() {
         return getAllNames();
     }

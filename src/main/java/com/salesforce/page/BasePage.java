@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 public class BasePage {
 
-    protected By NEW_BTN_LOCATOR = By.xpath("//div[@title='New']");
-    private final By LIST_OF_NAMES = By.xpath("//th//a[@data-refid='recordId']");
-    private final By DELETE_BTN = By.xpath("//li[@class='uiMenuItem']//a[@title='Delete']");
-    private final By CONFIRM_DELETION_BTN = By.xpath("//span[text()='Delete']");
-    private final By ENTITY_MESSAGE = By.xpath("//span[@data-aura-class='forceActionsText']");
     private static final String ENTITY_ACTIONS_DROP_DOWN = "//a[text()='%s']//ancestor::tr//a[@role='button']";
+    private static final By LIST_OF_NAMES = By.xpath("//th//a[@data-refid='recordId']");
+    private static final By DELETE_BTN = By.xpath("//li[@class='uiMenuItem']//a[@title='Delete']");
+    private static final By CONFIRM_DELETION_BTN = By.xpath("//span[text()='Delete']");
+    private static final By ENTITY_MESSAGE = By.xpath("//span[@data-aura-class='forceActionsText']");
+    protected By NEW_BTN_LOCATOR = By.xpath("//div[@title='New']");
 
     protected WebDriver driver;
     protected WebDriverWait wait;

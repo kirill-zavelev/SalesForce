@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
-    private By graph = By.xpath("//div[@class='ps-container']");
+    private final By graph = By.xpath("//div[@class='ps-container']");
 
     public HomePage(WebDriver driver) {
         super(driver);

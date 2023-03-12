@@ -1,13 +1,12 @@
 package com.salesforce.page;
 
-import com.salesforce.model.ContactForm;
+import com.salesforce.dto.ContactForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NewContactModalPage extends BasePage {
 
-    private By SAVE_CONTACT = By.xpath("//button[@name='SaveEdit']");
-
+    private static final By SAVE_CONTACT = By.xpath("//button[@name='SaveEdit']");
 
     public NewContactModalPage(WebDriver driver) {
         super(driver);
@@ -16,9 +15,15 @@ public class NewContactModalPage extends BasePage {
     public NewContactModalPage fillInContactInformation(ContactForm contactForm) {
         new ContactForm.Builder(driver)
                 .fillFirstName(contactForm.getFirstName())
-                .fillLastName(contactForm.getLastName())
                 .fillMobile(contactForm.getMobile())
                 .fillEmail(contactForm.getEmail())
+                .fillPhone(contactForm.getPhone())
+                .fillTitle(contactForm.getTitle())
+                .fillMailingStreet(contactForm.getMailingStreet())
+                .fillFax(contactForm.getFax())
+                .fillDepartment(contactForm.getDepartment())
+                .fillOtherPhone(contactForm.getOtherPhone())
+                .selectLeadSource(contactForm.getLeadSource())
                 .fillAccountName(contactForm.getAccountName())
                 .build();
         driver.findElement(By.xpath(String.format("//strong[text()='%s']//ancestor::span[@class='slds-media__body']",
@@ -26,8 +31,8 @@ public class NewContactModalPage extends BasePage {
         return this;
     }
 
-    public ContactsPage saveContact() {
+    public ContactDetailsPage saveContact() {
         driver.findElement(SAVE_CONTACT).click();
-        return new ContactsPage(driver);
+        return new ContactDetailsPage(driver);
     }
 }

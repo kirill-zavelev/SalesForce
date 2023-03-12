@@ -8,9 +8,9 @@ import java.util.Properties;
 
 public class LoginPage extends BasePage {
 
-    private By username = By.id("username");
-    private By password = By.id("password");
-    private By loginButton = By.id("Login");
+    private static final By username = By.id("username");
+    private static final By password = By.id("password");
+    private static final By loginButton = By.id("Login");
 
     public LoginPage(WebDriver driver) {
         super(driver);
