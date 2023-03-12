@@ -86,21 +86,4 @@ public class AccountTest extends BaseTest {
                 .as("List of account names should not contain: " + expectedAccount.getAccountName())
                 .doesNotContain(expectedAccount.getAccountName());
     }
-
-//    @AfterClass(alwaysRun = true)
-//    public void cleanUp() {
-//        new LoginPage(driver).open()
-//                .login()
-//                .waitForPageOpening();
-//        final String expectedAccountDeletedMessage = "Account " + "\"" + expectedAccount.getAccountName() + "\""
-//                + " was deleted.";
-//        accountsPage = new AccountsPage(driver);
-//        accountsPage.open().waitForPageOpening().deleteAccount(expectedAccount.getAccountName());
-//        Assertions.assertThat(accountsPage.getAccountDeletedMessage())
-//                .as("Message should contains of " + expectedAccountDeletedMessage)
-//                .contains(expectedAccountDeletedMessage);
-//        Assertions.assertThat(new AccountsPage(driver).getAccountsNames())
-//                .as("List of account names should not contain: " + expectedAccount.getAccountName())
-//                .doesNotContain(expectedAccount.getAccountName());
-//    }
 }
