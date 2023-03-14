@@ -29,16 +29,16 @@ public class AccountDetailsPage extends BasePage {
 
     public AccountForm getAccount() {
         String employees = driver.findElement(EMPLOYEES_LOCATOR).getText();
-        AccountForm accountForm = new AccountForm();
-        accountForm.setAccountName(getAccountInformation("Account Name"));
-        accountForm.setPhone(getAccountInformationWithLink("Phone"));
-        accountForm.setFax(getAccountInformationWithLink("Fax"));
-        accountForm.setWebsite(getAccountInformationWithLink("Website"));
-        accountForm.setBillingStreet(getAccountInformationWithLink("Billing Address"));
-        accountForm.setShippingStreet(getAccountInformationWithLink("Shipping Address"));
-        accountForm.setEmployees(employees);
-        accountForm.setType(getAccountInformation("Type"));
-        accountForm.setIndustry(getAccountInformation("Industry"));
-        return accountForm;
+        return AccountForm.builder()
+                .accountName(getAccountInformation("Account Name"))
+                .phone(getAccountInformationWithLink("Phone"))
+                .fax(getAccountInformationWithLink("Fax"))
+                .website(getAccountInformationWithLink("Website"))
+                .billingStreet(getAccountInformationWithLink("Billing Address"))
+                .shippingStreet(getAccountInformationWithLink("Shipping Address"))
+                .employees(employees)
+                .type(getAccountInformation("Type"))
+                .industry(getAccountInformation("Industry"))
+                .build();
     }
 }

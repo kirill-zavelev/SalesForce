@@ -17,19 +17,22 @@ import java.util.List;
 public class AccountTest extends BaseTest {
 
     private AccountForm expectedAccount;
+    private Faker faker;
 
     @BeforeClass
     public void generateAccount() {
-        expectedAccount = new AccountForm();
-        expectedAccount.setAccountName(new Faker().name().firstName());
-        expectedAccount.setPhone(new Faker().phoneNumber().cellPhone());
-        expectedAccount.setEmployees(RandomStringUtils.random(1, false, true));
-        expectedAccount.setWebsite(new Faker().internet().domainName());
-        expectedAccount.setBillingStreet(new Faker().address().streetName());
-        expectedAccount.setShippingStreet(new Faker().address().streetName());
-        expectedAccount.setFax(RandomStringUtils.random(5, false, true));
-        expectedAccount.setType(Type.ANALYST.toString());
-        expectedAccount.setIndustry(Industry.CHEMISTRY.toString());
+        faker = new Faker();
+        expectedAccount = AccountForm.builder()
+                .accountName(faker.name().firstName())
+                .phone(faker.phoneNumber().cellPhone())
+                .employees(RandomStringUtils.random(1, false, true))
+                .website(faker.internet().domainName())
+                .billingStreet(faker.address().streetName())
+                .shippingStreet(faker.address().streetName())
+                .fax(RandomStringUtils.random(5, false, true))
+                .type(Type.ANALYST.toString())
+                .industry(Industry.CHEMISTRY.toString())
+                .build();
     }
 
     @Test()
