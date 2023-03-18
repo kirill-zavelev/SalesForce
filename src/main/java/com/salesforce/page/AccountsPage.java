@@ -61,4 +61,9 @@ public class AccountsPage extends BasePage {
         deleteEntity(accountName);
         return this;
     }
+
+//    public AccountsPage deleteAccounts(List<String> accountsNames) {
+//        deleteEntity(accountName);
+//        return this;
+//    }
 }

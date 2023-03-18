@@ -1,6 +1,5 @@
 package com.salesforce.page;
 
-import com.beust.ah.A;
 import com.salesforce.dto.AccountForm;
 import com.salesforce.wrapper.Account;
 import org.openqa.selenium.By;
@@ -25,6 +24,11 @@ public class NewAccountModalPage extends BasePage {
        new Account(driver, "Industry").selectItemFromDropDown(accountForm.getIndustry());
        new Account(driver, "Type").selectItemFromDropDown(accountForm.getType());
        return this;
+    }
+
+    public NewAccountModalPage fillInMandatoryAccountInformation(AccountForm accountForm) {
+        new Account(driver, "Account Name").fillIn(accountForm.getAccountName(), false);
+        return this;
     }
 
     public AccountDetailsPage saveAccount() {

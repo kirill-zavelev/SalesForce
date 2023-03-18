@@ -1,13 +1,9 @@
 package com.salesforce.dto;
 
-import com.salesforce.wrapper.Account;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.openqa.selenium.WebDriver;
-
-import java.util.Objects;
 
 @Data
 @Builder

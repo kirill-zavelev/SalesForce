@@ -41,4 +41,11 @@ public class AccountDetailsPage extends BasePage {
                 .industry(getAccountInformation("Industry"))
                 .build();
     }
+
+    public AccountForm getAccountWithMandatoryFields() {
+        String employees = driver.findElement(EMPLOYEES_LOCATOR).getText();
+        return AccountForm.builder()
+                .accountName(getAccountInformation("Account Name"))
+                .build();
+    }
 }
