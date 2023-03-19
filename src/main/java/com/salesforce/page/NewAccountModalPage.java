@@ -14,16 +14,16 @@ public class NewAccountModalPage extends BasePage {
     }
 
     public NewAccountModalPage fillInAccountInformation(AccountForm accountForm) {
-       new Account(driver, "Account Name").fillIn(accountForm.getAccountName(), false);
-       new Account(driver, "Website").fillIn(accountForm.getWebsite(), false);
-       new Account(driver, "Phone").fillIn(accountForm.getPhone(), false);
-       new Account(driver, "Employees").fillIn(accountForm.getEmployees(), false);
-       new Account(driver, "Billing Street").fillIn(accountForm.getBillingStreet(), true);
-       new Account(driver, "Shipping Street").fillIn(accountForm.getShippingStreet(), true);
-       new Account(driver, "Fax").fillIn(accountForm.getFax(), false);
-       new Account(driver, "Industry").selectItemFromDropDown(accountForm.getIndustry());
-       new Account(driver, "Type").selectItemFromDropDown(accountForm.getType());
-       return this;
+        new Account(driver, "Account Name").fillIn(accountForm.getAccountName(), false);
+        new Account(driver, "Website").fillIn(accountForm.getWebsite(), false);
+        new Account(driver, "Phone").fillIn(accountForm.getPhone(), false);
+        new Account(driver, "Employees").fillIn(accountForm.getEmployees(), false);
+        new Account(driver, "Billing Street").fillIn(accountForm.getBillingStreet(), true);
+        new Account(driver, "Shipping Street").fillIn(accountForm.getShippingStreet(), true);
+        new Account(driver, "Fax").fillIn(accountForm.getFax(), false);
+        new Account(driver, "Industry").selectItemFromDropDown(accountForm.getIndustry());
+        new Account(driver, "Type").selectItemFromDropDown(accountForm.getType());
+        return this;
     }
 
     public NewAccountModalPage fillInMandatoryAccountInformation(AccountForm accountForm) {

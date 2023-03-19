@@ -5,6 +5,7 @@ import com.salesforce.wrapper.FormattedText;
 import com.salesforce.wrapper.FormattedTextWithLink;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ContactDetailsPage extends BasePage {
 
@@ -12,9 +13,16 @@ public class ContactDetailsPage extends BasePage {
             "//ancestor::records-record-layout-item//div//a//span");
     private static final By CONTACT_NAME = By.xpath("//span[text()='Name']" +
             "//ancestor::records-record-layout-item//div//lightning-formatted-name");
+    private static final By CONTACT_TITLE_LOCATOR = By.xpath("//div[@class='slds-media__body']" +
+            "//div[text()='Contact']");
 
     public ContactDetailsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public ContactDetailsPage waitForPageOpening() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CONTACT_TITLE_LOCATOR));
+        return this;
     }
 
     public String getContactCreatedMessage() {
@@ -30,19 +38,19 @@ public class ContactDetailsPage extends BasePage {
     }
 
     public ContactForm getContact() {
-        ContactForm contactForm = new ContactForm();
         String name = driver.findElement(CONTACT_NAME).getText();
-        contactForm.setFirstName(name);
-        contactForm.setMobile(getContactInformationWithLink("Mobile"));
-        contactForm.setEmail(getContactInformationWithLink("Email"));
-        contactForm.setPhone(getContactInformationWithLink("Phone"));
-        contactForm.setTitle(getContactInformation("Title"));
-        contactForm.setMailingStreet(getContactInformationWithLink("Mailing Address"));
-        contactForm.setFax(getContactInformationWithLink("Fax"));
-        contactForm.setDepartment(getContactInformation("Department"));
-        contactForm.setOtherPhone(getContactInformationWithLink("Other Phone"));
-        contactForm.setLeadSource(getContactInformation("Lead Source"));
-        contactForm.setAccountName(driver.findElement(ACCOUNT_NAME).getText());
-        return contactForm;
+        return ContactForm.builder()
+                .firstName(name)
+                .mobile(getContactInformationWithLink("Mobile"))
+                .email(getContactInformationWithLink("Email"))
+                .phone(getContactInformationWithLink("Phone"))
+                .title(getContactInformation("Title"))
+                .mailingStreet(getContactInformationWithLink("Mailing Address"))
+                .fax(getContactInformationWithLink("Fax"))
+                .department(getContactInformation("Department"))
+                .otherPhone(getContactInformationWithLink("Other Phone"))
+                .leadSource(getContactInformation("Lead Source"))
+                .accountName(driver.findElement(ACCOUNT_NAME).getText())
+                .build();
     }
 }

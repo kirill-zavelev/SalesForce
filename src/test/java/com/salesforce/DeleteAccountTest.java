@@ -3,6 +3,7 @@ package com.salesforce;
 import com.salesforce.dto.AccountForm;
 import com.salesforce.page.AccountsPage;
 import com.salesforce.page.LoginPage;
+import com.salesforce.step.AccountSteps;
 import com.salesforce.util.Industry;
 import com.salesforce.util.Type;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,6 +28,7 @@ public class DeleteAccountTest extends BaseTest {
         new LoginPage(driver).open()
                 .login()
                 .waitForPageOpening();
+        new AccountSteps(driver).createNewAccount(expectedAccount);
         final String expectedAccountDeletedMessage = "Account " + "\"" + expectedAccount.getAccountName() + "\""
                 + " was deleted.";
         AccountsPage accountsPage = new AccountsPage(driver)

@@ -30,7 +30,7 @@ public class ContactsPage extends BasePage {
         return this;
     }
 
-    public NewContactModalPage createNewAccount() {
+    public NewContactModalPage createNewContact() {
         driver.findElement(NEW_BTN_LOCATOR).click();
         return new NewContactModalPage(driver);
     }
